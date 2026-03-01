@@ -386,17 +386,148 @@ body.modal-open {
 @media (max-width: 980px) {
   .layout {
     grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0 16px 44px;
   }
 
   .toc {
     position: static;
+    padding: 14px;
+  }
+
+  .toc nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .toc a {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    padding: 40px 16px 20px;
+  }
+
+  .hero-sub {
+    margin: 12px 0 16px;
+    font-size: 0.98rem;
+  }
+
+  .hero-btn {
+    width: 100%;
+    text-align: center;
+    padding: 12px 14px;
+  }
+
+  .card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .card h2 {
+    font-size: 1.2rem;
+    line-height: 1.25;
+  }
+
+  ol {
+    padding-left: 20px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 }
 
 @media (max-width: 640px) {
-  .hero { padding-top: 42px; }
-  .card { padding: 16px; }
-  .toc { padding: 14px; }
+  .toc nav {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+  }
+
+  .toc a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 9px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  [data-theme="light"] .toc a {
+    background: #f2f7ff;
+  }
+
+  .theme-toggle {
+    width: 100%;
+    text-align: center;
+  }
+
+  pre {
+    font-size: 0.88rem;
+  }
+
+  .image-modal {
+    padding: 12px;
+  }
+
+  .image-modal-content {
+    max-width: 100%;
+    max-height: 84vh;
+    border-radius: 10px;
+  }
+
+  .image-modal-close {
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 420px) {
+  h1 {
+    font-size: clamp(1.6rem, 8vw, 2rem);
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+  }
+
+  .hero-top {
+    width: 100%;
+  }
+
+  .toc h2 {
+    font-size: 1rem;
+  }
+
+  .card h2 {
+    font-size: 1.1rem;
+  }
+
+  body {
+    line-height: 1.5;
+  }
+
+  .layout {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .hero {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
   .hero-top {
     align-items: flex-start;
     flex-direction: column;
