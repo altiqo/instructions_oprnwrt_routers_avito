@@ -29,6 +29,9 @@
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
+html {
+  -webkit-text-size-adjust: 100%;
+}
 body {
   font-family: "Manrope", sans-serif;
   color: var(--text);
@@ -40,6 +43,15 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+}
+
+.layout,
+.layout > *,
+.content,
+.toc,
+.card,
+.gallery {
+  min-width: 0;
 }
 
 [data-theme="light"] body {
@@ -195,6 +207,7 @@ h1 {
 .toc nav {
   display: grid;
   gap: 8px;
+  width: 100%;
 }
 
 .toc a {
@@ -204,6 +217,7 @@ h1 {
   border-radius: 9px;
   background: transparent;
   border: 1px solid transparent;
+  overflow-wrap: anywhere;
 }
 
 .toc a:hover {
@@ -398,6 +412,7 @@ body.modal-open {
   .toc nav {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
+    overflow: visible;
   }
 
   .toc a {
@@ -408,6 +423,10 @@ body.modal-open {
 }
 
 @media (max-width: 760px) {
+  body {
+    font-size: 16px;
+  }
+
   .hero {
     padding: 40px 16px 20px;
   }
@@ -445,19 +464,18 @@ body.modal-open {
 
 @media (max-width: 640px) {
   .toc nav {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: visible;
     gap: 8px;
-    padding-bottom: 4px;
-    scrollbar-width: thin;
   }
 
   .toc a {
-    flex: 0 0 auto;
-    white-space: nowrap;
-    padding: 9px 12px;
-    border-radius: 999px;
+    white-space: normal;
+    line-height: 1.25;
+    min-height: 42px;
+    padding: 10px 10px;
+    border-radius: 10px;
     background: rgba(255, 255, 255, 0.03);
   }
 
@@ -531,6 +549,10 @@ body.modal-open {
   .hero-top {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .toc nav {
+    grid-template-columns: 1fr;
   }
 }
 
