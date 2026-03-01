@@ -1,0 +1,236 @@
+:root {
+  --bg: #f4efe6;
+  --surface: #fffaf2;
+  --surface-2: #ffffff;
+  --text: #1f1c18;
+  --muted: #6a6258;
+  --line: #d8cdbd;
+  --accent: #0d7f7c;
+  --accent-2: #ef6b3f;
+  --shadow: 0 12px 34px rgba(45, 33, 16, 0.12);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: "Manrope", sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 8% 8%, #fff8ef 0%, var(--bg) 36%),
+              radial-gradient(circle at 92% 0%, #ffeed4 0%, rgba(255, 238, 212, 0) 48%),
+              var(--bg);
+  line-height: 1.55;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.bg-shape {
+  position: fixed;
+  z-index: -1;
+  border-radius: 999px;
+  filter: blur(6px);
+  opacity: .48;
+}
+
+.bg-shape-a {
+  width: 320px;
+  height: 320px;
+  background: #8bd3c8;
+  top: -100px;
+  right: -90px;
+  animation: drift 11s ease-in-out infinite;
+}
+
+.bg-shape-b {
+  width: 260px;
+  height: 260px;
+  background: #ffb79f;
+  bottom: -90px;
+  left: -90px;
+  animation: drift 14s ease-in-out infinite reverse;
+}
+
+.hero {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 56px 20px 30px;
+  animation: rise .65s ease-out both;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  font-size: .78rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  line-height: 1.1;
+}
+
+.hero-sub {
+  margin: 16px 0 24px;
+  color: var(--muted);
+  max-width: 70ch;
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 11px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(135deg, var(--accent), #12a19e);
+  box-shadow: 0 10px 24px rgba(13, 127, 124, .28);
+}
+
+.layout {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px 56px;
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 22px;
+}
+
+.toc {
+  position: sticky;
+  top: 14px;
+  align-self: start;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  animation: rise .7s ease-out both;
+}
+
+.toc h2 {
+  margin: 0 0 12px;
+  font-size: 1.06rem;
+}
+
+.toc nav {
+  display: grid;
+  gap: 8px;
+}
+
+.toc a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.toc a:hover {
+  border-color: var(--line);
+  background: #fff;
+}
+
+.content {
+  display: grid;
+  gap: 18px;
+}
+
+.card {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  animation: rise .8s ease-out both;
+}
+
+.card h2 {
+  margin: 0 0 12px;
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+}
+
+ol {
+  margin: 0;
+  padding-left: 22px;
+}
+
+p { margin: 0 0 10px; }
+
+code {
+  font-family: "IBM Plex Mono", monospace;
+  background: #f2f2f2;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1px 5px;
+}
+
+pre {
+  margin: 12px 0;
+  overflow-x: auto;
+  background: #1e1e1e;
+  color: #f0f0f0;
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+pre code {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+figure {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f7f7f7;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+a { color: #0e6764; }
+
+a:hover { color: var(--accent-2); }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(14px); }
+}
+
+@media (max-width: 980px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .toc {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero { padding-top: 42px; }
+  .card { padding: 16px; }
+  .toc { padding: 14px; }
+}

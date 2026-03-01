@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OpenWRT Router Guide</title>
+  <meta name="description" content="Пошаговая инструкция по настройке роутера с OpenWRT: подключение, интернет, Wi‑Fi, обход доменов и VPN." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-shape bg-shape-a"></div>
+  <div class="bg-shape bg-shape-b"></div>
+
+  <header class="hero">
+    <p class="eyebrow">Инструкция</p>
+    <h1>Роутер с OpenWRT</h1>
+    <p class="hero-sub">Компактное руководство для быстрой настройки подключения, Wi-Fi и VPN.</p>
+    <a class="hero-btn" href="#toc">Перейти к разделам</a>
+  </header>
+
+  <main class="layout">
+    <aside class="toc" id="toc">
+      <h2>Оглавление</h2>
+      <nav>
+        <a href="#admin">Вход в админку</a>
+        <a href="#conn">Смена типа подключения</a>
+        <a href="#dhcp">DHCP и страница логина</a>
+        <a href="#wifi">Имя и пароль Wi‑Fi</a>
+        <a href="#bypass">Добавить сайт в обход</a>
+        <a href="#adguard">Перезапуск AdguardVPN</a>
+        <a href="#custom-vpn">Свой VPN</a>
+        <a href="#amnezia">Обновление Amnezia</a>
+      </nav>
+    </aside>
+
+    <section class="content">
+      <article class="card" id="admin">
+        <h2>Вход в админку для первого подключения</h2>
+        <ol>
+          <li>Подключите кабель провайдера в <strong>WAN</strong> порт роутера.</li>
+          <li>При необходимости подключите устройство по <strong>LAN</strong> кабелю (например, в порт <strong>LAN1</strong>).</li>
+          <li>Откройте в браузере <code>http://192.168.1.1</code>.</li>
+          <li>Логин: <code>root</code>, пароль: <code>12345678</code>.</li>
+        </ol>
+        <div class="gallery">
+          <figure><img src="assets/images/image23.jpg" alt="Подключение кабелей к роутеру" loading="lazy" /></figure>
+          <figure><img src="assets/images/image8.png" alt="Страница входа в админку OpenWRT" loading="lazy" /></figure>
+        </div>
+      </article>
+
+      <article class="card" id="conn">
+        <h2>Как поменять тип подключения</h2>
+        <ol>
+          <li>Перейдите в <strong>Сеть → Интерфейсы</strong>.</li>
+          <li>Откройте настройки интерфейса <strong>WAN</strong>.</li>
+          <li>Выберите протокол <strong>PPPoE</strong> и введите логин/пароль от провайдера.</li>
+          <li>Нажмите <strong>Сохранить</strong>, затем <strong>Применить</strong>.</li>
+          <li>Проверьте, что интернет-подключение стало активным.</li>
+        </ol>
+        <div class="gallery">
+          <figure><img src="assets/images/image4.png" alt="Сеть и интерфейсы в OpenWRT" loading="lazy" /></figure>
+          <figure><img src="assets/images/image16.png" alt="Настройки WAN интерфейса" loading="lazy" /></figure>
+          <figure><img src="assets/images/image9.png" alt="Выбор протокола PPPoE" loading="lazy" /></figure>
+          <figure><img src="assets/images/image15.png" alt="Применение настроек OpenWRT" loading="lazy" /></figure>
+        </div>
+      </article>
+
+      <article class="card" id="dhcp">
+        <h2>DHCP: не открывается страница логина провайдера</h2>
+        <p>Позвоните провайдеру и сообщите, что вы заменили роутер. Обычно нужно обновить <strong>MAC-адрес</strong> на стороне провайдера.</p>
+      </article>
+
+      <article class="card" id="wifi">
+        <h2>Как поменять название Wi‑Fi и пароль</h2>
+        <ol>
+          <li>Откройте <strong>Сеть → Беспроводная сеть</strong>.</li>
+          <li>Нажмите <strong>Изменить</strong> для 2.4G и 5G сетей.</li>
+          <li>Измените имя сети (SSID) и пароль.</li>
+          <li>Сохраните и примените настройки.</li>
+        </ol>
+        <div class="gallery">
+          <figure><img src="assets/images/image20.png" alt="Раздел беспроводной сети OpenWRT" loading="lazy" /></figure>
+          <figure><img src="assets/images/image5.png" alt="Изменение имени сети Wi-Fi" loading="lazy" /></figure>
+          <figure><img src="assets/images/image6.png" alt="Изменение пароля Wi-Fi" loading="lazy" /></figure>
+        </div>
+      </article>
+
+      <article class="card" id="bypass">
+        <h2>Как добавить свой сайт в обход</h2>
+        <ol>
+          <li>Перейдите в <strong>Службы → podkop → Секции</strong>.</li>
+          <li>В разделе «Тип пользовательского списка доменов» выберите <strong>Текстовый список</strong>.</li>
+          <li>Добавьте домены в формате <code>ya.ru</code> (без <code>https://</code>).</li>
+          <li>Примените изменения. Если нужно, перезапустите podkop в разделе «Диагностика».</li>
+          <li>Если сайт не открывается сразу, проверьте в режиме инкогнито или в другом браузере.</li>
+        </ol>
+        <div class="gallery">
+          <figure><img src="assets/images/image2.png" alt="Секции podkop" loading="lazy" /></figure>
+          <figure><img src="assets/images/image3.png" alt="Тип пользовательского списка доменов" loading="lazy" /></figure>
+          <figure><img src="assets/images/image18.png" alt="Поле для доменов в podkop" loading="lazy" /></figure>
+          <figure><img src="assets/images/image11.png" alt="Применение изменений в podkop" loading="lazy" /></figure>
+        </div>
+      </article>
+
+      <article class="card" id="adguard">
+        <h2>Как перезапустить AdguardVPN</h2>
+        <ol>
+          <li>Откройте командную строку (<code>Win + R → cmd</code>).</li>
+          <li>Подключитесь к роутеру: <code>ssh root@192.168.1.1</code>.</li>
+          <li>При запросе ключа введите <code>yes</code>, затем пароль роутера.</li>
+          <li>Запустите команду:</li>
+        </ol>
+        <pre><code>/opt/adguardvpn_cli/adguardvpn-cli connect -l PL</code></pre>
+        <p>После выполнения команду можно закрыть.</p>
+        <div class="gallery">
+          <figure><img src="assets/images/image17.png" alt="SSH вход на роутер OpenWRT" loading="lazy" /></figure>
+        </div>
+      </article>
+
+      <article class="card" id="custom-vpn">
+        <h2>Как заменить изначальную настройку и поставить свой VPN</h2>
+        <ol>
+          <li>Откройте <strong>Службы → podkop → Секции</strong>.</li>
+          <li>Выберите тип подключения <strong>Proxy</strong>.</li>
+          <li>Заполните параметры своего VPN (например, VLESS).</li>
+          <li>Примените изменения.</li>
+        </ol>
+        <div class="gallery">
+          <figure><img src="assets/images/image19.png" alt="Настройки podkop" loading="lazy" /></figure>
+          <figure><img src="assets/images/image12.png" alt="Выбор Proxy в podkop" loading="lazy" /></figure>
+          <figure><img src="assets/images/image10.png" alt="Параметры VPN в podkop" loading="lazy" /></figure>
+        </div>
+      </article>
+
+      <article class="card" id="amnezia">
+        <h2>Amnezia не работает: как обновить конфиг</h2>
+        <ol>
+          <li>Скачайте любой WARP-конфиг: <a href="https://warp-generator.github.io/warp/" target="_blank" rel="noopener noreferrer">warp-generator.github.io/warp</a>.</li>
+          <li>Перейдите в <strong>Сеть → Интерфейсы → AmneziaWG</strong> и нажмите «Изменить».</li>
+          <li>Импортируйте содержимое скачанного конфигурационного файла.</li>
+          <li>Нажмите «Импорт настроек» и примените изменения.</li>
+        </ol>
+        <div class="gallery">
+          <figure><img src="assets/images/image1.png" alt="Интерфейс AmneziaWG в OpenWRT" loading="lazy" /></figure>
+          <figure><img src="assets/images/image7.png" alt="Импорт конфигурации AmneziaWG" loading="lazy" /></figure>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
